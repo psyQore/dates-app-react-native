@@ -7,10 +7,9 @@ import {
   Pressable,
   Modal,
 } from 'react-native';
-import Form from './src/components/Form'
+import Form from './src/components/Form';
 
 const App = () => {
-  
   const [visibleModal, setVisibleModal] = useState(false);
 
   const newDateHandle = () => {
@@ -24,11 +23,13 @@ const App = () => {
         <Text style={styles.titleBold}>Veterinaria </Text>
       </Text>
 
-      <Pressable onPress={() => setVisibleModal(true)} style={styles.btnNewDate}>
+      <Pressable
+        onPress={() => setVisibleModal(true)}
+        style={styles.btnNewDate}>
         <Text style={styles.btnTextNewDate}>Nueva Cita</Text>
       </Pressable>
 
-    <Form />
+      <Form visibleModal={visibleModal} />
     </View>
   );
 };
