@@ -7,10 +7,11 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
+  Pressable,
 } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 
-const Form = ({visibleModal}) => {
+const Form = ({visibleModal, setVisibleModal }) => {
   const [patient, setPatient] = useState('');
   const [owner, setOwner] = useState('');
   const [email, setEmail] = useState('');
@@ -26,6 +27,10 @@ const Form = ({visibleModal}) => {
             Nueva {''}
             <Text style={styles.titleBold}>Cita</Text>
           </Text>
+
+          <Pressable style={styles.btnCancel} onLongPress={() => setVisibleModal(!visibleModal)}>
+            <Text style={styles.btnCancelText}>X Cancelar</Text>
+          </Pressable>
 
           <View style={styles.field}>
             <Text style={styles.label}>Nombre Paciente</Text>
@@ -80,7 +85,7 @@ const Form = ({visibleModal}) => {
               <DatePicker
                 date={date}
                 locale="es"
-                onDateChange={(date) => setDate(date)}
+                onDateChange={date => setDate(date)}
               />
             </View>
           </View>
@@ -89,7 +94,6 @@ const Form = ({visibleModal}) => {
             <Text style={styles.label}>Sintomas Paciente</Text>
             <TextInput
               style={[styles.input, styles.inputSymtoms]}
-              placeholder="Sintomas"
               placeholderTextColor={'#666'}
               value={symtoms}
               onChangeText={setSymtoms}
@@ -97,6 +101,11 @@ const Form = ({visibleModal}) => {
               numberOfLines={4}
             />
           </View>
+
+          <Pressable style={styles.btnNewDate}>
+            <Text style={styles.newDateText} >Agregar Paciente</Text>
+          </Pressable>
+
         </ScrollView>
       </View>
     </Modal>
@@ -117,6 +126,20 @@ const styles = StyleSheet.create({
   },
   titleBold: {
     fontWeight: '900',
+  },
+  btnCancel: {
+    marginVertical: 30,
+    backgroundColor: '#5827A4',
+    marginHorizontal: 30,
+    padding: 20,
+    borderRadius: 10,
+  },
+  btnCancelText: {
+    color: '#FFF',
+    textAlign: 'center',
+    fontWeight: '900',
+    fontSize: 16,
+    textTransform: 'uppercase',
   },
   field: {
     marginHorizontal: 30,
@@ -140,6 +163,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     borderRadius: 10,
   },
+  btnNewDate: {
+    marginVertical: 50,
+    backgroundColor: "#F59E0B",
+    paddingVertical: 15,
+    marginHorizontal: 30,
+    borderRadius: 10,
+  },
+  newDateText:{
+    color: "#5827A4",
+    textAlign: 'center',
+    fontWeight: '900',
+    fontSize: 16,
+    textTransform: 'uppercase'
+  }
 });
 
 export default Form;

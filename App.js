@@ -24,12 +24,12 @@ const App = () => {
       </Text>
 
       <Pressable
-        onPress={() => setVisibleModal(true)}
+        onPress={() => setVisibleModal(!visibleModal)}
         style={styles.btnNewDate}>
         <Text style={styles.btnTextNewDate}>Nueva Cita</Text>
       </Pressable>
 
-      <Form visibleModal={visibleModal} />
+      <Form visibleModal={visibleModal} setVisibleModal={setVisibleModal} />
     </View>
   );
 };
