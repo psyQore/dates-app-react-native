@@ -7,6 +7,7 @@ import {
   Pressable,
   Modal,
 } from 'react-native';
+import Form from './src/components/Form'
 
 const App = () => {
   
@@ -27,9 +28,7 @@ const App = () => {
         <Text style={styles.btnTextNewDate}>Nueva Cita</Text>
       </Pressable>
 
-      <Modal animationType="fade" visible={visibleModal}>
-        <Text>Desde Modal</Text>
-      </Modal>
+    <Form />
     </View>
   );
 };
