@@ -8,12 +8,14 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
+import DatePicker from 'react-native-date-picker';
 
 const Form = ({visibleModal}) => {
   const [patient, setPatient] = useState('');
   const [owner, setOwner] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [date, setDate] = useState(new Date());
   const [symtoms, setSymtoms] = useState('');
 
   return (
@@ -73,6 +75,17 @@ const Form = ({visibleModal}) => {
           </View>
 
           <View style={styles.field}>
+            <Text style={styles.label}>Fecha Alta</Text>
+            <View style={styles.dateContainer}>
+              <DatePicker
+                date={date}
+                locale="es"
+                onDateChange={(date) => setDate(date)}
+              />
+            </View>
+          </View>
+
+          <View style={styles.field}>
             <Text style={styles.label}>Sintomas Paciente</Text>
             <TextInput
               style={[styles.input, styles.inputSymtoms]}
@@ -122,6 +135,10 @@ const styles = StyleSheet.create({
   },
   inputSymtoms: {
     height: 100,
+  },
+  dateContainer: {
+    backgroundColor: '#FFF',
+    borderRadius: 10,
   },
 });
 
