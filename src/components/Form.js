@@ -8,16 +8,27 @@ import {
   TextInput,
   ScrollView,
   Pressable,
+  Alert,
 } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 
-const Form = ({visibleModal, setVisibleModal }) => {
+const Form = ({visibleModal, setVisibleModal}) => {
   const [patient, setPatient] = useState('');
   const [owner, setOwner] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [date, setDate] = useState(new Date());
   const [symtoms, setSymtoms] = useState('');
+
+  const handleDate = () => {
+    // Validacion
+    if ([patient, owner, email, date, symtoms].includes('')) {
+      Alert.alert('Error', 'Todos los campos son obligatorios');
+      return;
+    }
+
+    
+  };
 
   return (
     <Modal animationType="slide" visible={visibleModal}>
@@ -28,7 +39,9 @@ const Form = ({visibleModal, setVisibleModal }) => {
             <Text style={styles.titleBold}>Cita</Text>
           </Text>
 
-          <Pressable style={styles.btnCancel} onLongPress={() => setVisibleModal(!visibleModal)}>
+          <Pressable
+            style={styles.btnCancel}
+            onLongPress={() => setVisibleModal(!visibleModal)}>
             <Text style={styles.btnCancelText}>X Cancelar</Text>
           </Pressable>
 
@@ -102,10 +115,9 @@ const Form = ({visibleModal, setVisibleModal }) => {
             />
           </View>
 
-          <Pressable style={styles.btnNewDate}>
-            <Text style={styles.newDateText} >Agregar Paciente</Text>
+          <Pressable style={styles.btnNewDate} onPress={handleDate}>
+            <Text style={styles.newDateText}>Agregar Paciente</Text>
           </Pressable>
-
         </ScrollView>
       </View>
     </Modal>
@@ -165,18 +177,18 @@ const styles = StyleSheet.create({
   },
   btnNewDate: {
     marginVertical: 50,
-    backgroundColor: "#F59E0B",
+    backgroundColor: '#F59E0B',
     paddingVertical: 15,
     marginHorizontal: 30,
     borderRadius: 10,
   },
-  newDateText:{
-    color: "#5827A4",
+  newDateText: {
+    color: '#5827A4',
     textAlign: 'center',
     fontWeight: '900',
     fontSize: 16,
-    textTransform: 'uppercase'
-  }
+    textTransform: 'uppercase',
+  },
 });
 
 export default Form;
