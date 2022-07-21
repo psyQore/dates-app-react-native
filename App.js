@@ -1,7 +1,17 @@
-import React from 'react';
-import {SafeAreaView, Text, View, StyleSheet, Pressable} from 'react-native';
+import React, {useState} from 'react';
+import {
+  SafeAreaView,
+  Text,
+  View,
+  StyleSheet,
+  Pressable,
+  Modal,
+} from 'react-native';
 
 const App = () => {
+  
+  const [visibleModal, setVisibleModal] = useState(false);
+
   const newDateHandle = () => {
     console.log('Presionate La Funcion xd');
   };
@@ -13,9 +23,13 @@ const App = () => {
         <Text style={styles.titleBold}>Veterinaria </Text>
       </Text>
 
-      <Pressable onPress={newDateHandle} style={styles.btnNewDate}>
+      <Pressable onPress={() => setVisibleModal(true)} style={styles.btnNewDate}>
         <Text style={styles.btnTextNewDate}>Nueva Cita</Text>
       </Pressable>
+
+      <Modal animationType="fade" visible={visibleModal}>
+        <Text>Desde Modal</Text>
+      </Modal>
     </View>
   );
 };
@@ -64,5 +78,8 @@ cd ..
 
 npm cache clean --force
 
+
+Puerto react-devtools
+adb reverse tcp:8097 tcp:8097
 
 */
