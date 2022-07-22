@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 
-const Form = ({visibleModal, setVisibleModal}) => {
+const Form = ({visibleModal, setVisibleModal, patients , setPatients}) => {
   const [patient, setPatient] = useState('');
   const [owner, setOwner] = useState('');
   const [email, setEmail] = useState('');
@@ -27,7 +27,16 @@ const Form = ({visibleModal, setVisibleModal}) => {
       return;
     }
 
-    
+    const newPatient = {
+      patient,
+      owner,
+      email,
+      phone,
+      date,
+      symtoms,
+    };
+
+    setPatients([...patients, newPatient]);
   };
 
   return (
@@ -154,6 +163,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   field: {
+    marginTop: 10,
     marginHorizontal: 30,
   },
   label: {

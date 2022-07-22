@@ -11,6 +11,7 @@ import Form from './src/components/Form';
 
 const App = () => {
   const [visibleModal, setVisibleModal] = useState(false);
+  const [patients, setPatients] = useState([]);
 
   const newDateHandle = () => {
     console.log('Presionate La Funcion xd');
@@ -29,7 +30,12 @@ const App = () => {
         <Text style={styles.btnTextNewDate}>Nueva Cita</Text>
       </Pressable>
 
-      <Form visibleModal={visibleModal} setVisibleModal={setVisibleModal} />
+      <Form
+        visibleModal={visibleModal}
+        setVisibleModal={setVisibleModal}
+        patients={patients}
+        setPatients={setPatients}
+      />
     </View>
   );
 };
