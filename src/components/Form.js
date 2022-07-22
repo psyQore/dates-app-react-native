@@ -37,6 +37,14 @@ const Form = ({visibleModal, setVisibleModal, patients , setPatients}) => {
     };
 
     setPatients([...patients, newPatient]);
+    setVisibleModal(!visibleModal);
+
+    setPatient("");
+    setOwner("");
+    setEmail("");
+    setPhone("");
+    setDate(new Date());
+    setSymtoms("");
   };
 
   return (
