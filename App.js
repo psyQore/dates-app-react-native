@@ -6,8 +6,10 @@ import {
   StyleSheet,
   Pressable,
   Modal,
+  FlatList,
 } from 'react-native';
 import Form from './src/components/Form';
+import Patient from './src/components/Patient';
 
 const App = () => {
   const [visibleModal, setVisibleModal] = useState(false);
@@ -29,6 +31,21 @@ const App = () => {
         style={styles.btnNewDate}>
         <Text style={styles.btnTextNewDate}>Nueva Cita</Text>
       </Pressable>
+
+      {patients.length === 0 ? (
+        <Text style={styles.noPatients}>No hay pacientes aún</Text>
+      ) : (
+        <FlatList
+          data={patients}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => {
+
+            return (
+              <Patient item={item} />
+            );
+          }}
+        />
+      )}
 
       <Form
         visibleModal={visibleModal}
@@ -68,6 +85,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '900',
     textTransform: 'uppercase',
+  },
+  noPatients: {
+    marginTop: 40,
+    textAlign: 'center',
+    fontSize: 24,
+    fontWeight: '600',
   },
 });
 
