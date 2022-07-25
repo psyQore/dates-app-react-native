@@ -14,9 +14,11 @@ import Patient from './src/components/Patient';
 const App = () => {
   const [visibleModal, setVisibleModal] = useState(false);
   const [patients, setPatients] = useState([]);
+  const [patient, setPatient] = useState({});
 
-  const newDateHandle = () => {
-    console.log('Presionate La Funcion xd');
+  const patientToEdit = id => {
+    const patientToEdit = patients.filter(patient => patient.id === id);
+    setPatient(patientToEdit[0]);
   };
 
   return (
@@ -36,13 +38,16 @@ const App = () => {
         <Text style={styles.noPatients}>No hay pacientes aún</Text>
       ) : (
         <FlatList
-        style={styles.List}
+          style={styles.List}
           data={patients}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => {
-
+          renderItem={({item}) => {
             return (
-              <Patient item={item} />
+              <Patient
+                item={item}
+                setVisibleModal={setVisibleModal}
+                patientToEdit={patientToEdit}
+              />
             );
           }}
         />
@@ -95,8 +100,8 @@ const styles = StyleSheet.create({
   },
   List: {
     marginTop: 50,
-    marginHorizontal: 30
-  }
+    marginHorizontal: 30,
+  },
 });
 
 export default App;

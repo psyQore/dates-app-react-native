@@ -2,8 +2,8 @@ import React from 'react';
 import {Text, View, StyleSheet, Pressable} from 'react-native';
 import {formatDate} from '../helpers';
 
-const Patient = ({item}) => {
-  const {patient, owner, email, phone, date, symtoms} = item;
+const Patient = ({item, setVisibleModal, patientToEdit}) => {
+  const {patient, owner, email, phone, date, symtoms, id} = item;
 
   return (
     <View style={styles.container}>
@@ -12,7 +12,12 @@ const Patient = ({item}) => {
       <Text style={styles.date}>{formatDate(date)}</Text>
 
       <View style={styles.containerButtons}>
-        <Pressable style={[styles.btn, styles.btnEdit]}>
+        <Pressable
+          onLongPress={() => {
+            setVisibleModal(true)
+            patientToEdit(id)
+          }}
+          style={[styles.btn, styles.btnEdit]}>
           <Text style={styles.btnText}>Editar</Text>
         </Pressable>
 
