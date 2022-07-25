@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Modal,
   Text,
@@ -12,13 +12,32 @@ import {
 } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 
-const Form = ({visibleModal, setVisibleModal, patients , setPatients}) => {
+const Form = ({
+  visibleModal,
+  setVisibleModal,
+  patients,
+  setPatients,
+  patient: patientObj,
+}) => {
+  const [id, setId] = useState('');
   const [patient, setPatient] = useState('');
   const [owner, setOwner] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [date, setDate] = useState(new Date());
   const [symtoms, setSymtoms] = useState('');
+
+  useEffect(() => {
+    if (Object.keys(patientObj).length > 0) {
+      setId(patientObj.id);
+      setPatient(patientObj.patient);
+      setOwner(patientObj.owner);
+      setEmail(patientObj.email);
+      setPhone(patientObj.phone);
+      setDate(patientObj.date);
+      setSymtoms(patientObj.symtoms);
+    }
+  }, []);
 
   const handleDate = () => {
     // Validacion
@@ -40,12 +59,12 @@ const Form = ({visibleModal, setVisibleModal, patients , setPatients}) => {
     setPatients([...patients, newPatient]);
     setVisibleModal(!visibleModal);
 
-    setPatient("");
-    setOwner("");
-    setEmail("");
-    setPhone("");
+    setPatient('');
+    setOwner('');
+    setEmail('');
+    setPhone('');
     setDate(new Date());
-    setSymtoms("");
+    setSymtoms('');
   };
 
   return (
