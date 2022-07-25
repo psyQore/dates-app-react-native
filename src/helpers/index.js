@@ -24,12 +24,12 @@ export const formatDate = date => {
       'Diciembre',
     ];
     const day = days_week[dateNew.getDay()];
-    const dateNum = dateNew.getDate();
+    const dayNum = dateNew.getDate();
     const month = months[dateNew.getMonth()];
     const year = dateNew.getUTCFullYear();
     const hours = dateNew.getHours();
     const minutes = dateNew.getMinutes();
-    const finalDate = `${day}, ${(dateNum)} de ${month} de ${year} a las ${hours}:${minutes}`;
+    const finalDate = `${day}, ${(dayNum)} de ${month} de ${year} a las ${hours}:${minutes}`;
 
     return finalDate;
   };
