@@ -89,7 +89,11 @@ const App = () => {
       />
 
       <Modal visible={modalPatient} animationType="slide">
-        <PatientInformation patient={patient} setModalPatient={setModalPatient} />
+        <PatientInformation
+          patient={patient}
+          setModalPatient={setModalPatient}
+          setPatient={setPatient}
+        />
       </Modal>
     </View>
   );
