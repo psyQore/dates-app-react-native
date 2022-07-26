@@ -21,6 +21,10 @@ const App = () => {
     setPatient(patientToEdit[0]);
   };
 
+  const patientToEliminate = (id) => {
+    console.log("Eliminando", id);
+  }
+
   return (
     <View style={styles.contaier}>
       <Text style={styles.title}>
@@ -59,6 +63,7 @@ const App = () => {
         patients={patients}
         setPatients={setPatients}
         patient={patient}
+        setPatient={setPatient}
       />
     </View>
   );

@@ -7,15 +7,17 @@ const Patient = ({item, setVisibleModal, patientToEdit}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Paciente</Text>
+      {/* <Text style={styles.label}>Propietario:</Text>
+      <Text style={styles.text}>{owner}</Text> */}
+      <Text style={styles.label}>Paciente:</Text>
       <Text style={styles.text}>{patient}</Text>
       <Text style={styles.date}>{formatDate(date)}</Text>
 
       <View style={styles.containerButtons}>
         <Pressable
           onLongPress={() => {
-            setVisibleModal(true)
-            patientToEdit(id)
+            setVisibleModal(true);
+            patientToEdit(id);
           }}
           style={[styles.btn, styles.btnEdit]}>
           <Text style={styles.btnText}>Editar</Text>
@@ -35,12 +37,18 @@ const styles = StyleSheet.create({
     padding: 20,
     borderBottomColor: '#94a3b8',
     borderBottomWidth: 1,
+    borderRadius: 15,
   },
   label: {
     color: '#374151',
     textTransform: 'uppercase',
     fontWeight: '700',
     marginBottom: 10,
+  },
+  owner: {
+    color: '#374151',
+    textTransform: 'uppercase',
+    fontWeight: '700',
   },
   text: {
     color: '#6d28d9',
@@ -57,9 +65,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   btn: {
-    paddingVertical: 5,
-    paddingHorizontal: 20,
-    borderRadius: 5,
+    paddingVertical: 9,
+    paddingHorizontal: 25,
+    borderRadius: 7,
   },
   btnEdit: {
     backgroundColor: '#f59E5E',

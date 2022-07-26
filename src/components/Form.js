@@ -18,9 +18,10 @@ const Form = ({
   patients,
   setPatients,
   patient: patientObj,
+  setPatient: setPatientApp,
 }) => {
-  const [id, setId] = useState('');
   const [patient, setPatient] = useState('');
+  const [id, setId] = useState('');
   const [owner, setOwner] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -29,15 +30,15 @@ const Form = ({
 
   useEffect(() => {
     if (Object.keys(patientObj).length > 0) {
-      setId(patientObj.id);
       setPatient(patientObj.patient);
+      setId(patientObj.id);
       setOwner(patientObj.owner);
       setEmail(patientObj.email);
       setPhone(patientObj.phone);
       setDate(patientObj.date);
       setSymtoms(patientObj.symtoms);
     }
-  }, []);
+  }, [patientObj]);
 
   const handleDate = () => {
     // Validacion
@@ -46,8 +47,9 @@ const Form = ({
       return;
     }
 
+    // Revisar si es una nueva cita o edicion de cita
+
     const newPatient = {
-      id: Date.now(),
       patient,
       owner,
       email,
@@ -56,7 +58,22 @@ const Form = ({
       symtoms,
     };
 
-    setPatients([...patients, newPatient]);
+    if (id) {
+      // Editando Cita
+      newPatient.id = id;
+
+      const updatedPatients = patients.map(patientState =>
+        patientState.id === newPatient.id ? newPatient : patientState,
+      );
+
+      setPatients(updatedPatients);
+      setPatientApp({});
+    } else {
+      //Nueva Cita
+      newPatient.id = Date.now();
+      setPatients([...patients, newPatient]);
+    }
+
     setVisibleModal(!visibleModal);
 
     setPatient('');
@@ -72,13 +89,22 @@ const Form = ({
       <View style={styles.content}>
         <ScrollView>
           <Text style={styles.title}>
-            Nueva {''}
+            {patientObj.id ? "Editar" : "Nueva" } {''}
             <Text style={styles.titleBold}>Cita</Text>
           </Text>
 
           <Pressable
             style={styles.btnCancel}
-            onLongPress={() => setVisibleModal(!visibleModal)}>
+            onLongPress={() => {
+              setVisibleModal(!visibleModal);
+              setPatientApp({});
+              setPatient('');
+              setOwner('');
+              setEmail('');
+              setPhone('');
+              setDate(new Date());
+              setSymtoms('');
+            }}>
             <Text style={styles.btnCancelText}>X Cancelar</Text>
           </Pressable>
 
@@ -153,7 +179,7 @@ const Form = ({
           </View>
 
           <Pressable style={styles.btnNewDate} onPress={handleDate}>
-            <Text style={styles.newDateText}>Agregar Paciente</Text>
+            <Text style={styles.newDateText}>{patientObj.id ? "Editar" : "Agregar" } Paciente</Text>
           </Pressable>
         </ScrollView>
       </View>
