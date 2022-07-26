@@ -88,8 +88,8 @@ const App = () => {
         setPatient={setPatient}
       />
 
-      <Modal visible={modalPatient} animationType="fade">
-        <PatientInformation patient={patient} />
+      <Modal visible={modalPatient} animationType="slide">
+        <PatientInformation patient={patient} setModalPatient={setModalPatient} />
       </Modal>
     </View>
   );
