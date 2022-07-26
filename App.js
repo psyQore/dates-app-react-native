@@ -11,11 +11,13 @@ import {
 } from 'react-native';
 import Form from './src/components/Form';
 import Patient from './src/components/Patient';
+import PatientInformation from './src/components/PatientInformation';
 
 const App = () => {
   const [visibleModal, setVisibleModal] = useState(false);
   const [patients, setPatients] = useState([]);
   const [patient, setPatient] = useState({});
+  const [modalPatient, setModalPatient] = useState(false);
 
   const patientToEdit = id => {
     const patientToEdit = patients.filter(patient => patient.id === id);
@@ -69,6 +71,7 @@ const App = () => {
                 setVisibleModal={setVisibleModal}
                 patientToEdit={patientToEdit}
                 patientToEliminate={patientToEliminate}
+                setModalPatient={setModalPatient}
               />
             );
           }}
@@ -83,6 +86,10 @@ const App = () => {
         patient={patient}
         setPatient={setPatient}
       />
+
+      <Modal visible={modalPatient} animationType="fade">
+        <PatientInformation />
+      </Modal>
     </View>
   );
 };

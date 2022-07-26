@@ -2,32 +2,46 @@ import React from 'react';
 import {Text, View, StyleSheet, Pressable} from 'react-native';
 import {formatDate} from '../helpers';
 
-const Patient = ({item, setVisibleModal, patientToEdit, patientToEliminate}) => {
+const Patient = ({
+  item,
+  setVisibleModal,
+  patientToEdit,
+  patientToEliminate,
+  setModalPatient,
+}) => {
   const {patient, owner, email, phone, date, symtoms, id} = item;
 
   return (
-    <View style={styles.container}>
-      {/* <Text style={styles.label}>Propietario:</Text>
+    <Pressable
+      onLongPress={() => setModalPatient(true)}
+    >
+      <View style={styles.container}>
+        {/* <Text style={styles.label}>Propietario:</Text>
       <Text style={styles.text}>{owner}</Text> */}
-      <Text style={styles.label}>Paciente:</Text>
-      <Text style={styles.text}>{patient}</Text>
-      <Text style={styles.date}>{formatDate(date)}</Text>
+        <Text style={styles.label}>Paciente:</Text>
+        <Text style={styles.text}>{patient}</Text>
+        <Text style={styles.date}>{formatDate(date)}</Text>
 
-      <View style={styles.containerButtons}>
-        <Pressable
-          onLongPress={() => {
-            setVisibleModal(true);
-            patientToEdit(id);
-          }}
-          style={[styles.btn, styles.btnEdit]}>
-          <Text style={styles.btnText}>Editar</Text>
-        </Pressable>
+        <View style={styles.containerButtons}>
+          <Pressable
+            onLongPress={() => {
+              setVisibleModal(true);
+              patientToEdit(id);
+            }}
+            style={[styles.btn, styles.btnEdit]}>
+            <Text style={styles.btnText}>Editar</Text>
+          </Pressable>
 
-        <Pressable style={[styles.btn, styles.btnDelete]}>
-          <Text style={styles.btnText}  onLongPress={ () => patientToEliminate(id)}>Eliminar</Text>
-        </Pressable>
+          <Pressable style={[styles.btn, styles.btnDelete]}>
+            <Text
+              style={styles.btnText}
+              onLongPress={() => patientToEliminate(id)}>
+              Eliminar
+            </Text>
+          </Pressable>
+        </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

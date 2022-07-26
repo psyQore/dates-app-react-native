@@ -89,7 +89,7 @@ const Form = ({
       <View style={styles.content}>
         <ScrollView>
           <Text style={styles.title}>
-            {patientObj.id ? "Editar" : "Nueva" } {''}
+            {patientObj.id ? 'Editar' : 'Nueva'} {''}
             <Text style={styles.titleBold}>Cita</Text>
           </Text>
 
@@ -179,7 +179,9 @@ const Form = ({
           </View>
 
           <Pressable style={styles.btnNewDate} onPress={handleDate}>
-            <Text style={styles.newDateText}>{patientObj.id ? "Editar" : "Agregar" } Paciente</Text>
+            <Text style={styles.newDateText}>
+              {patientObj.id ? 'Editar' : 'Agregar'} Paciente
+            </Text>
           </Pressable>
         </ScrollView>
       </View>
