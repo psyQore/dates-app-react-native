@@ -7,6 +7,7 @@ import {
   Pressable,
   Modal,
   FlatList,
+  Alert,
 } from 'react-native';
 import Form from './src/components/Form';
 import Patient from './src/components/Patient';
@@ -21,9 +22,25 @@ const App = () => {
     setPatient(patientToEdit[0]);
   };
 
-  const patientToEliminate = (id) => {
-    console.log("Eliminando", id);
-  }
+  const patientToEliminate = id => {
+    Alert.alert(
+      '¿Deseas eliminar este paciente?',
+      'Un pacinete eliminado no se puede recuperar',
+      [
+        {text: 'Cancelar'},
+        {
+          text: 'Si, Eliminar',
+          onPress: () => {
+            const updatedPatients = patients.filter(
+              patientState => patientState.id !== id,
+            );
+
+            setPatients(updatedPatients);
+          },
+        },
+      ],
+    );
+  };
 
   return (
     <View style={styles.contaier}>
@@ -51,6 +68,7 @@ const App = () => {
                 item={item}
                 setVisibleModal={setVisibleModal}
                 patientToEdit={patientToEdit}
+                patientToEliminate={patientToEliminate}
               />
             );
           }}

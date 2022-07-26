@@ -20,8 +20,8 @@ const Form = ({
   patient: patientObj,
   setPatient: setPatientApp,
 }) => {
-  const [patient, setPatient] = useState('');
   const [id, setId] = useState('');
+  const [patient, setPatient] = useState('');
   const [owner, setOwner] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -75,7 +75,7 @@ const Form = ({
     }
 
     setVisibleModal(!visibleModal);
-
+    setId('');
     setPatient('');
     setOwner('');
     setEmail('');

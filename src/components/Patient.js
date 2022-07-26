@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, StyleSheet, Pressable} from 'react-native';
 import {formatDate} from '../helpers';
 
-const Patient = ({item, setVisibleModal, patientToEdit}) => {
+const Patient = ({item, setVisibleModal, patientToEdit, patientToEliminate}) => {
   const {patient, owner, email, phone, date, symtoms, id} = item;
 
   return (
@@ -24,7 +24,7 @@ const Patient = ({item, setVisibleModal, patientToEdit}) => {
         </Pressable>
 
         <Pressable style={[styles.btn, styles.btnDelete]}>
-          <Text style={styles.btnText}>Eliminar</Text>
+          <Text style={styles.btnText}  onLongPress={ () => patientToEliminate(id)}>Eliminar</Text>
         </Pressable>
       </View>
     </View>
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderBottomColor: '#94a3b8',
     borderBottomWidth: 1,
-    borderRadius: 15,
+    borderRadius: 10,
   },
   label: {
     color: '#374151',
