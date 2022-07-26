@@ -44,6 +44,10 @@ const App = () => {
     );
   };
 
+  const closeModal = () => {
+    setVisibleModal(false)
+  }
+
   return (
     <View style={styles.contaier}>
       <Text style={styles.title}>
@@ -79,14 +83,15 @@ const App = () => {
         />
       )}
 
-      <Form
-        visibleModal={visibleModal}
-        setVisibleModal={setVisibleModal}
-        patients={patients}
-        setPatients={setPatients}
-        patient={patient}
-        setPatient={setPatient}
-      />
+      {visibleModal && (
+        <Form
+        closeModal={closeModal}
+          patients={patients}
+          setPatients={setPatients}
+          patient={patient}
+          setPatient={setPatient}
+        />
+      )}
 
       <Modal visible={modalPatient} animationType="slide">
         <PatientInformation
