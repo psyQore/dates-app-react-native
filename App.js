@@ -69,6 +69,7 @@ const App = () => {
               <Patient
                 item={item}
                 setVisibleModal={setVisibleModal}
+                setPatient={setPatient}
                 patientToEdit={patientToEdit}
                 patientToEliminate={patientToEliminate}
                 setModalPatient={setModalPatient}
@@ -88,7 +89,7 @@ const App = () => {
       />
 
       <Modal visible={modalPatient} animationType="fade">
-        <PatientInformation />
+        <PatientInformation patient={patient} />
       </Modal>
     </View>
   );

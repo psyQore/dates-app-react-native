@@ -5,6 +5,7 @@ import {formatDate} from '../helpers';
 const Patient = ({
   item,
   setVisibleModal,
+  setPatient,
   patientToEdit,
   patientToEliminate,
   setModalPatient,
@@ -13,8 +14,10 @@ const Patient = ({
 
   return (
     <Pressable
-      onLongPress={() => setModalPatient(true)}
-    >
+      onLongPress={() => {
+        setModalPatient(true);
+        setPatient(item);
+      }}>
       <View style={styles.container}>
         {/* <Text style={styles.label}>Propietario:</Text>
       <Text style={styles.text}>{owner}</Text> */}
